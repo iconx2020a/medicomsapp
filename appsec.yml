@@ -1,5 +1,27 @@
 version: 0.0
 os: linux
-files:
-  - source: ./medicomstestapp-app-1.0-SNAPSHOT.jar
-    destination: /opt/tomcat/
+# Copy war file to /opt/tomcat/webapps
+files: 
+  - source: /target/medicomstestapp.war
+    destination: /opt/tomcat/webapps
+    overwrite: true
+
+permissions: 
+  - object: / 
+    pattern: "**" 
+    mode: 755
+    owner: tomcat 
+    group: tomcat
+hooks:
+# Before the application is deployed, Tomcat needs to be stopped and 
+# the existing applications cleaned up
+  ApplicationStop:
+    - location: scripts/server_stop_clean.sh
+      timeout: 60
+      runas: root
+
+# Now we can start up Tomcat once again
+  ApplicationStart:
+    - location: scripts/server_start.sh   
+      timeout: 60
+      runas: root
