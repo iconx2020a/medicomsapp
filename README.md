@@ -1,0 +1,2 @@
+# medicomsapp
+for aws build
