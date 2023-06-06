@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 # Copy war file to /opt/tomcat/webapps
 files: 
-  - source: /target/medicomstestapp.war
+  - source: /
     destination: /opt/tomcat/webapps
     overwrite: true
 
