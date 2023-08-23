@@ -1,8 +1,11 @@
 version: 0.2
+
 phases:
   install:
     runtime-versions:
-      java: corretto17
+      java: corretto11
+    commands:
+      - echo java runtime is done
   build:
     commands:
       - echo Build started on `date`
